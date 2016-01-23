@@ -5,6 +5,7 @@ import cofh.core.CoFHProps;
 import cofh.core.network.PacketCoFHBase;
 import cofh.core.util.ConfigHandler;
 import cofh.hud.core.Proxy;
+import cofh.hud.itempickup.ItemDropHandler;
 import cofh.hud.network.PacketHudBase;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.mod.BaseMod;
@@ -34,12 +35,12 @@ public class CoFHHud extends BaseMod {
 	public static final String modName = "CoFH HUD";
 	public static final String version = "1.7.10R1.0.0A1";
 	public static final String dependencies = CoFHCore.version_group;
-	public static final String releaseURL = "https://raw.github.com/CoFH/Version/master/ThermalAscension";
+	public static final String releaseURL = "https://raw.github.com/CoFH/Version/master/CoFHHud";
 
 	@Instance(modId)
 	public static CoFHHud instance;
 
-	@SidedProxy(clientSide = "cofh.thermalascension.core.ProxyClient", serverSide = "cofh.thermalascension.core.Proxy")
+	@SidedProxy(clientSide = "cofh.cofhhud.core.ProxyClient", serverSide = "cofh.cofhhud.core.Proxy")
 	public static Proxy proxy;
 
 	public static final Logger log = LogManager.getLogger(modId);
@@ -70,6 +71,7 @@ public class CoFHHud extends BaseMod {
 
 		/* Register Handlers */
 		MinecraftForge.EVENT_BUS.register(proxy);
+		MinecraftForge.EVENT_BUS.register(ItemDropHandler.instance);
 		PacketHudBase.initialize();
 	}
 
